@@ -15,3 +15,5 @@ BACKEND:
 - ORM - Sequelize
 - Реализация ролей
 
+Схема БД:
+![](./sources/bd.png)
