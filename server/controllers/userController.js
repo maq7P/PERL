@@ -50,13 +50,10 @@ class UserController {
 		return res.json({token})
 	}
 	async check(req, res, next){
-		const {id} = req.query;
+		const {user} = req;
+		const token = generateJWT(user.id, user.email, user.role);
 
-		if(!id){
-			return next(ApiError.badRequest("Не задан ID"));
-		}
-
-		res.json(id)
+		return res.json({token})
 	}
 }
 
