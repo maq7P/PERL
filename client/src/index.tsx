@@ -1,11 +1,18 @@
 import React from "react"
 import ReactDOM from "react-dom"
 
+import AppContext from "./context/AppContext"
+import UserStore from "./store/UserStore"
+
 import App from "./App"
 
 ReactDOM.render(
-  <React.StrictMode>
+  <AppContext.Provider
+    value={{
+      user: new UserStore(),
+    }}
+  >
     <App />
-  </React.StrictMode>,
+  </AppContext.Provider>,
   document.getElementById("root"),
 )
