@@ -1,33 +1,40 @@
-import {ADMIN_ROUTE, BASKET_ROUTE, DEVICE_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE} from "./utils/constants";
+import {
+  ADMIN_ROUTE,
+  BASKET_ROUTE,
+  DEVICE_ROUTE,
+  LOGIN_ROUTE,
+  REGISTRATION_ROUTE,
+  SHOP_ROUTE,
+} from "./utils/constants"
 
-import {Admin, DevicePage,Shop, Auth} from './pages';
+import { Admin, DevicePage, Shop, Auth } from "./pages"
 
 export const privateRoutes = [
   {
+    Component: Admin,
     path: ADMIN_ROUTE,
-    Component: Admin
   },
   {
+    Component: Admin,
     path: BASKET_ROUTE,
-    Component: Admin
-  }
-];
+  },
+]
 
 export const publicRoutes = [
   {
+    Component: Shop,
     path: SHOP_ROUTE,
-    Component: Shop
   },
   {
+    Component: Auth,
     path: LOGIN_ROUTE,
-    Component: Auth
   },
   {
+    Component: Auth,
     path: REGISTRATION_ROUTE,
-    Component: Auth
   },
   {
+    Component: DevicePage,
     path: `${DEVICE_ROUTE}/:id`,
-    Component: DevicePage
   },
 ]
