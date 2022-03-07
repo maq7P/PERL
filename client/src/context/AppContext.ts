@@ -1,6 +1,15 @@
 import { createContext } from "react"
 import UserStore from "../store/UserStore"
+import DeviceStore from "../store/DeviceStore"
 
-const AppContext = createContext<{ user: UserStore } | null>(null)
+interface IAppContext {
+  user: UserStore
+  device: DeviceStore
+}
+
+const AppContext = createContext<IAppContext>({
+  user: {} as UserStore,
+  device: {} as DeviceStore,
+})
 
 export default AppContext
