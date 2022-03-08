@@ -55,7 +55,11 @@ const Auth = () => {
                 Есть аккаунт? <NavLink to={LOGIN_ROUTE}>Войдите!</NavLink>
               </div>
             )}
-            <Button variant={"outline-success"} onClick={handleClick}>
+            <Button
+              variant={"outline-success"}
+              onClick={handleClick}
+              style={{ marginTop: 16 }}
+            >
               {isLogin ? "Войти" : "Регистрация"}
             </Button>
           </Row>
