@@ -3,7 +3,7 @@ import { Card, Col } from "react-bootstrap"
 import Image from "react-bootstrap/Image"
 
 import { useNavigate } from "react-router-dom"
-
+// @ts-ignore
 import star from "../assets/star.png"
 
 import { IDevice } from "../store/DeviceStore"
@@ -26,6 +26,7 @@ const DeviceItem: FC<IDeviceItem> = ({ device }) => {
           width={150}
           height={150}
           src={process.env.REACT_APP_API_URL + device.img}
+          alt="картинка"
         />
         <div className="text-black-50 mt-1 d-flex justify-content-between align-items-center">
           <div>Samsung...</div>
