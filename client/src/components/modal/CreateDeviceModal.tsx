@@ -1,6 +1,8 @@
-import React from "react"
+import React, {FC} from "react"
 
-const CreateDeviceModal = () => {
+import {IModal} from "./types";
+
+const CreateDeviceModal: FC<IModal> = () => {
   return <div>Device Modal</div>
 }
 
