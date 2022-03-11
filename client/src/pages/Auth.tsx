@@ -7,12 +7,18 @@ import Form from "react-bootstrap/Form"
 import Row from "react-bootstrap/Row"
 import Button from "react-bootstrap/Button"
 
+import { registration, login } from "../api/userApi"
 import AppContext from "../context/AppContext"
 import { LOGIN_ROUTE, REGISTRATION_ROUTE } from "../utils/constants"
+import { observer } from "mobx-react-lite"
 
-const Auth = () => {
+const Auth = observer(() => {
   const { user } = useContext(AppContext)
   const location = useLocation()
+
+  // const signIn = async () => {
+  //   const response = await registration()
+  // }
 
   const [password, setPassword] = useState<string>("")
   const [email, setEmail] = useState<string>("")
@@ -20,7 +26,15 @@ const Auth = () => {
   const isLogin = location.pathname === LOGIN_ROUTE
 
   const handleClick = async () => {
-    console.log(email, password)
+    let user
+
+    if (isLogin) {
+      user = await login(email, password)
+    } else {
+      user = await registration(email, password, "ADMIN")
+    }
+
+    console.log(user)
   }
 
   return (
@@ -67,6 +81,6 @@ const Auth = () => {
       </Card>
     </Container>
   )
-}
+})
 
 export default Auth

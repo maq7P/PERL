@@ -5,7 +5,7 @@ export interface IUserStore {
   _userData: any
 }
 export default class UserStore implements IUserStore {
-  _isAuth = true
+  _isAuth = false
   _userData = {}
   constructor() {
     makeAutoObservable(this)
