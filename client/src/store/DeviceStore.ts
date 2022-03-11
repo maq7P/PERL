@@ -15,6 +15,7 @@ export interface IDevice extends IIdWithName {
 
 interface ISelectedType {
   id: number | string
+  name?: string
 }
 
 export interface IUserStore {

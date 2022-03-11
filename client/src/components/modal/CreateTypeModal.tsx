@@ -15,7 +15,7 @@ const CreateType: FC<IModal> = ({ show, onHide }) => {
     <Modal show={show} onHide={onHide} centered>
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Добавить бренд
+          Добавить тип
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>

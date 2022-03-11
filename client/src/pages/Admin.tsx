@@ -1,10 +1,8 @@
-import React, {useState} from 'react';
-import {Button, Container} from "react-bootstrap";
-import CreateBrandModal from "../components/modal/CreateBrandModal";
-import CreateDeviceModal from "../components/modal/CreateDeviceModal";
-import CreateTypeModal from "../components/modal/CreateTypeModal";
-
-
+import React, { useState } from "react"
+import { Button, Container } from "react-bootstrap"
+import CreateBrandModal from "../components/modal/CreateBrandModal"
+import CreateDeviceModal from "../components/modal/CreateDeviceModal"
+import CreateTypeModal from "../components/modal/CreateTypeModal"
 
 const Admin = () => {
   const [brandVisible, setBrandVisible] = useState(false)
@@ -34,11 +32,21 @@ const Admin = () => {
       >
         Добавить устройство
       </Button>
-      <CreateBrandModal show={brandVisible} onHide={() => setBrandVisible(false)}/>
-      <CreateDeviceModal show={deviceVisible} onHide={() => setDeviceVisible(false)}/>
-      <CreateTypeModal show={typeVisible} onHide={() => setTypeVisible(false)}/>
-    </Container>
-  );
-};
 
-export default Admin;
+      <CreateBrandModal
+        show={brandVisible}
+        onHide={() => setBrandVisible(false)}
+      />
+      <CreateDeviceModal
+        show={deviceVisible}
+        onHide={() => setDeviceVisible(false)}
+      />
+      <CreateTypeModal
+        show={typeVisible}
+        onHide={() => setTypeVisible(false)}
+      />
+    </Container>
+  )
+}
+
+export default Admin
