@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react"
-import { NavLink, useLocation } from "react-router-dom"
+import { NavLink, useLocation, useNavigate } from "react-router-dom"
 
 import Container from "react-bootstrap/Container"
 import Card from "react-bootstrap/Card"
@@ -9,13 +9,13 @@ import Button from "react-bootstrap/Button"
 
 import { registration, login } from "../api/userApi"
 import AppContext from "../context/AppContext"
-import { LOGIN_ROUTE, REGISTRATION_ROUTE } from "../utils/constants"
+import { LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE } from "../utils/constants"
 import { observer } from "mobx-react-lite"
 
 const Auth = observer(() => {
   const { user } = useContext(AppContext)
   const location = useLocation()
-
+  const navigate = useNavigate()
   // const signIn = async () => {
   //   const response = await registration()
   // }
@@ -26,15 +26,16 @@ const Auth = observer(() => {
   const isLogin = location.pathname === LOGIN_ROUTE
 
   const handleClick = async () => {
-    let user
+    let userData
 
     if (isLogin) {
-      user = await login(email, password)
+      userData = await login(email, password)
     } else {
-      user = await registration(email, password, "ADMIN")
+      userData = await registration(email, password, "ADMIN")
     }
-
-    console.log(user)
+    user.setUser(userData)
+    user.setIsAuth(true)
+    navigate(SHOP_ROUTE)
   }
 
   return (
