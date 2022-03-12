@@ -9,9 +9,15 @@ import TypeBar from "../components/TypeBar"
 import AppContext from "../context/AppContext"
 import BrandBar from "../components/BrandsBar"
 import DeviceList from "../components/DeviceList"
+import { fetchBrands, fetchTypes } from "../api/deviceApi"
 
 const Shop = observer(() => {
   const { device } = useContext(AppContext)
+
+  useEffect(() => {
+    fetchTypes().then(data => device.setTypes(data))
+    fetchBrands().then(data => device.setBrands(data))
+  }, [])
 
   return (
     <Container>

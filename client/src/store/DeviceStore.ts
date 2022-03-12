@@ -1,17 +1,5 @@
 import { makeAutoObservable } from "mobx"
-
-export interface IIdWithName {
-  id: number
-  name: string
-}
-export interface IType extends IIdWithName {}
-export interface IBrand extends IIdWithName {}
-export interface IDevice extends IIdWithName {
-  price: number
-  rating: number
-  name: string
-  img: string
-}
+import { IBrand, IDevice, IType } from "../types/device"
 
 interface ISelectedType {
   id: number | string
@@ -26,16 +14,8 @@ export interface IUserStore {
   _selectedBrand: ISelectedType
 }
 export default class DeviceStore implements IUserStore {
-  _types = [
-    { id: 1, name: "Холодильники" },
-    { id: 2, name: "Смартфоны" },
-    { id: 3, name: "Ноутбуки" },
-    { id: 4, name: "Телевизоры" },
-  ]
-  _brands = [
-    { id: 1, name: "Samsung" },
-    { id: 2, name: "Apple" },
-  ]
+  _types = [] as IUserStore["_types"]
+  _brands = [] as IUserStore["_brands"]
   _devices = [
     { id: 1, name: "Iphone 12 pro", price: 120000, rating: 5, img: "" },
     { id: 2, name: "Iphone 10", price: 70000, rating: 4, img: "" },

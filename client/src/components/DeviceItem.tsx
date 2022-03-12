@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom"
 // @ts-ignore
 import star from "../assets/star.png"
 
-import { IDevice } from "../store/DeviceStore"
+import { IDevice } from "../types/device"
 import { DEVICE_ROUTE } from "../utils/constants"
 
 interface IDeviceItem {

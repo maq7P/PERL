@@ -1,7 +1,6 @@
 import { $host, $authHost } from "./index"
 import jwt_decode from "jwt-decode"
-
-type TRole = "USER" | "ADMIN"
+import { TRole } from "../types/user"
 
 interface IJwtDecode {
   id: number
