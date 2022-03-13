@@ -7,6 +7,8 @@ export interface IUserStore {
   _devices: IDevice[]
   _selectedType: IType
   _selectedBrand: IBrand
+  _page: number
+  _totalCount: number
 }
 export default class DeviceStore implements IUserStore {
   _types = [] as IUserStore["_types"]
@@ -14,6 +16,9 @@ export default class DeviceStore implements IUserStore {
   _devices = [] as IUserStore["_devices"]
   _selectedType = {} as IUserStore["_selectedType"]
   _selectedBrand = {} as IUserStore["_selectedBrand"]
+  _page = 1
+  _totalCount = 0
+  _limit = 4
 
   constructor() {
     makeAutoObservable(this)
@@ -29,10 +34,18 @@ export default class DeviceStore implements IUserStore {
     this._devices = devices
   }
   setSelectedType(type: IUserStore["_selectedType"]) {
+    this.setPage(1)
     this._selectedType = type
   }
   setSelectedBrand(type: IUserStore["_selectedBrand"]) {
+    this.setPage(1)
     this._selectedBrand = type
+  }
+  setPage(page: number) {
+    this._page = page
+  }
+  setTotalCount(totalCount: number) {
+    this._totalCount = totalCount
   }
 
   get devices() {
@@ -49,5 +62,14 @@ export default class DeviceStore implements IUserStore {
   }
   get selectedBrand() {
     return this._selectedBrand
+  }
+  get page() {
+    return this._page
+  }
+  get totalCount() {
+    return this._totalCount
+  }
+  get limit() {
+    return this._limit
   }
 }

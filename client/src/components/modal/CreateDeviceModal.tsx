@@ -47,6 +47,7 @@ const CreateDevice: FC<IModal> = observer(({ show, onHide }) => {
     const fromData = new FormData()
     fromData.append("name", name)
     fromData.append("price", `${price}`)
+    // @ts-ignore
     fromData.append("img", file)
     fromData.append("brandId", device.selectedBrand.id ?? "")
     fromData.append("typeId", device.selectedType.id ?? "")

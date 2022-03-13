@@ -31,11 +31,23 @@ export const createDevice = async (formData: FormData): Promise<IDevice> => {
   return data
 }
 
-export const fetchDevices = async (): Promise<{
+export const fetchDevices = async ({
+  page = 1,
+  limit = 8,
+  typeId = null,
+  brandId = null,
+}: {
+  limit: number
+  page: number
+  typeId?: string | null
+  brandId?: string | null
+}): Promise<{
   rows: IDevice[]
   count: number
 }> => {
-  const { data } = await $host.get("api/device")
+  const { data } = await $host.get("api/device", {
+    params: { page, limit, typeId, brandId },
+  })
 
   return data
 }

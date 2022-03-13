@@ -10,6 +10,7 @@ import AppContext from "../context/AppContext"
 import BrandBar from "../components/BrandsBar"
 import DeviceList from "../components/DeviceList"
 import { fetchBrands, fetchDevices, fetchTypes } from "../api/deviceApi"
+import Pages from "../components/Pages"
 
 const Shop = observer(() => {
   const { device } = useContext(AppContext)
@@ -17,8 +18,23 @@ const Shop = observer(() => {
   useEffect(() => {
     fetchTypes().then(data => device.setTypes(data))
     fetchBrands().then(data => device.setBrands(data))
-    fetchDevices().then(data => device.setDevices(data.rows))
+    fetchDevices({ limit: device.limit, page: device.page }).then(data => {
+      device.setDevices(data.rows)
+      device.setTotalCount(data.count)
+    })
   }, [])
+
+  useEffect(() => {
+    fetchDevices({
+      limit: device.limit,
+      page: device.page,
+      brandId: device.selectedBrand.id,
+      typeId: device.selectedType.id,
+    }).then(data => {
+      device.setDevices(data.rows)
+      device.setTotalCount(data.count)
+    })
+  }, [device.page, device.selectedType, device.selectedBrand])
 
   return (
     <Container>
@@ -29,6 +45,7 @@ const Shop = observer(() => {
         <Col md={9}>
           <BrandBar />
           <DeviceList />
+          <Pages />
         </Col>
       </Row>
     </Container>
