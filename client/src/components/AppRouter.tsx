@@ -9,10 +9,12 @@ import AppContext from "../context/AppContext"
 const AppRouter = observer(() => {
   const { user } = useContext(AppContext)
 
-  console.log("isAuth: ", user.userData)
+  const isAdmin = user.userData.role === "ADMIN"
+
   return (
     <Routes>
       {user.isAuth &&
+        isAdmin &&
         privateRoutes.map(({ Component, path }, idx) => (
           <Route key={`${path} - ${idx}`} element={<Component />} path={path} />
         ))}

@@ -25,10 +25,8 @@ export const fetchBrands = async (): Promise<IBrand[]> => {
   return data
 }
 
-export const createDevice = async (type: string): Promise<IDevice> => {
-  const { data } = await $authHost.post("api/device", {
-    type,
-  })
+export const createDevice = async (formData: FormData): Promise<IDevice> => {
+  const { data } = await $authHost.post("api/device", formData)
 
   return data
 }

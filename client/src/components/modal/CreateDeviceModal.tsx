@@ -1,4 +1,4 @@
-import React, { FC, useContext, useState } from "react"
+import React, { useEffect, FC, useContext, useState } from "react"
 import { observer } from "mobx-react-lite"
 
 import Modal from "react-bootstrap/Modal"
@@ -7,6 +7,7 @@ import { Button, Dropdown, Form, Row, Col } from "react-bootstrap"
 import AppContext from "../../context/AppContext"
 
 import { IModal } from "./types"
+import { createDevice, fetchBrands, fetchTypes } from "../../api/deviceApi"
 
 interface IInfo {
   title: string
@@ -18,6 +19,12 @@ const CreateDevice: FC<IModal> = observer(({ show, onHide }) => {
   const [name, setName] = useState("")
   const [price, setPrice] = useState(0)
   const [info, setInfo] = useState<IInfo[]>([])
+  const [file, setFile] = useState<File | null>(null)
+
+  useEffect(() => {
+    fetchTypes().then(data => device.setTypes(data))
+    fetchBrands().then(data => device.setBrands(data))
+  }, [])
 
   const addInfo = () => {
     setInfo([...info, { title: "", description: "", number: Date.now() }])
@@ -29,7 +36,24 @@ const CreateDevice: FC<IModal> = observer(({ show, onHide }) => {
     setInfo(info.map(i => (i.number === number ? { ...i, [key]: value } : i)))
   }
 
-  const addDevice = () => {}
+  const selectFile = (e: any) => {
+    const target = e?.target as HTMLInputElement
+    const file: File = (target.files as FileList)[0]
+
+    setFile(file)
+  }
+
+  const addDevice = () => {
+    const fromData = new FormData()
+    fromData.append("name", name)
+    fromData.append("price", `${price}`)
+    fromData.append("img", file)
+    fromData.append("brandId", device.selectedBrand.id ?? "")
+    fromData.append("typeId", device.selectedType.id ?? "")
+    fromData.append("info", JSON.stringify(info))
+    createDevice(fromData).then(data => onHide?.())
+    console.log(info)
+  }
 
   return (
     <Modal show={show} onHide={onHide} centered>
@@ -83,7 +107,7 @@ const CreateDevice: FC<IModal> = observer(({ show, onHide }) => {
             placeholder="Введите стоимость устройства"
             type="number"
           />
-          <Form.Control className="mt-3" type="file" />
+          <Form.Control className="mt-3" type="file" onChange={selectFile} />
           <hr />
           <Button variant={"outline-dark"} onClick={addInfo}>
             Добавить новое свойство

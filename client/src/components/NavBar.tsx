@@ -21,6 +21,7 @@ const NavBar = observer(() => {
     user.setIsAuth(false)
   }
 
+  const isAdmin = user.userData.role === "ADMIN"
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
@@ -29,12 +30,14 @@ const NavBar = observer(() => {
         </NavLink>
         {user.isAuth ? (
           <Nav className="ml-auto" style={{ color: "white" }}>
-            <Button
-              variant={"outline-light"}
-              onClick={() => navigate(ADMIN_ROUTE)}
-            >
-              Админ панель
-            </Button>
+            {isAdmin && (
+              <Button
+                variant={"outline-light"}
+                onClick={() => navigate(ADMIN_ROUTE)}
+              >
+                Админ панель
+              </Button>
+            )}
             <Button
               variant={"outline-light"}
               onClick={() => logOut()}
