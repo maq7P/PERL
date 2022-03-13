@@ -3,12 +3,16 @@ import Modal from "react-bootstrap/Modal"
 import { Form, Button } from "react-bootstrap"
 
 import { IModal } from "./types"
+import { createType } from "../../api/deviceApi"
 
 const CreateType: FC<IModal> = ({ show, onHide }) => {
   const [value, setValue] = useState("")
 
   const addType = () => {
-    console.log("")
+    createType({ name: value }).then(() => {
+      setValue("")
+      onHide?.()
+    })
   }
 
   return (

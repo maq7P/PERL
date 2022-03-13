@@ -4,12 +4,16 @@ import Modal from "react-bootstrap/Modal"
 import { Button, Form } from "react-bootstrap"
 
 import { IModal } from "./types"
+import { createBrand } from "../../api/deviceApi"
 
 const CreateBrand: FC<IModal> = ({ show, onHide }) => {
   const [value, setValue] = useState("")
 
   const addBrand = () => {
-    console.log("")
+    createBrand({ name: value }).then(() => {
+      setValue("")
+      onHide?.()
+    })
   }
   return (
     <Modal show={show} onHide={onHide} centered>

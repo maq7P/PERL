@@ -1,24 +1,19 @@
 import { makeAutoObservable } from "mobx"
 import { IBrand, IDevice, IType } from "../types/device"
 
-interface ISelectedType {
-  id: number | string
-  name?: string
-}
-
 export interface IUserStore {
   _types: IType[]
   _brands: IBrand[]
   _devices: IDevice[]
-  _selectedType: ISelectedType
-  _selectedBrand: ISelectedType
+  _selectedType: IType
+  _selectedBrand: IBrand
 }
 export default class DeviceStore implements IUserStore {
   _types = [] as IUserStore["_types"]
   _brands = [] as IUserStore["_brands"]
   _devices = [] as IUserStore["_devices"]
-  _selectedType = {} as ISelectedType
-  _selectedBrand = {} as ISelectedType
+  _selectedType = {} as IUserStore["_selectedType"]
+  _selectedBrand = {} as IUserStore["_selectedBrand"]
 
   constructor() {
     makeAutoObservable(this)

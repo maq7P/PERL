@@ -8,7 +8,6 @@ import AppContext from "../context/AppContext"
 const BrandBar = observer(() => {
   const { device } = useContext(AppContext)
 
-  console.log("device.brands: ", device.brands)
   return (
     <Row className="d-flex">
       {device.brands.map(brand => (

@@ -1,13 +1,15 @@
 import React, { useContext } from "react"
 import { Routes, Route, Navigate } from "react-router-dom"
+import { observer } from "mobx-react-lite"
 
 import { privateRoutes, publicRoutes } from "../routes"
 import { SHOP_ROUTE } from "../utils/constants"
 import AppContext from "../context/AppContext"
 
-const AppRouter = () => {
+const AppRouter = observer(() => {
   const { user } = useContext(AppContext)
 
+  console.log("isAuth: ", user.userData)
   return (
     <Routes>
       {user.isAuth &&
@@ -21,6 +23,6 @@ const AppRouter = () => {
       <Route path="*" element={<Navigate to={SHOP_ROUTE} />} />
     </Routes>
   )
-}
+})
 
 export default AppRouter

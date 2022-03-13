@@ -10,13 +10,14 @@ import Container from "react-bootstrap/Container"
 
 import AppContext from "../context/AppContext"
 import { ADMIN_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from "../utils/constants"
+import { IUser } from "../types/user"
 
 const NavBar = observer(() => {
   const navigate = useNavigate()
   const { user } = useContext(AppContext)
 
   const logOut = () => {
-    user.setUser({})
+    user.setUser({} as IUser)
     user.setIsAuth(false)
   }
 

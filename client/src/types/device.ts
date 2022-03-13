@@ -1,5 +1,5 @@
 export interface IIdWithName {
-  id: number
+  id?: number
   name: string
 }
 export interface IType extends IIdWithName {}

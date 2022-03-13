@@ -1,10 +1,8 @@
 import { $host, $authHost } from "./index"
 import { IBrand, IDevice, IType } from "../types/device"
 
-export const createType = async (type: string): Promise<IType> => {
-  const { data } = await $authHost.post("api/type", {
-    type,
-  })
+export const createType = async (type: IType): Promise<IType> => {
+  const { data } = await $authHost.post("api/type", type)
 
   return data
 }
@@ -15,10 +13,8 @@ export const fetchTypes = async (): Promise<IType[]> => {
   return data
 }
 
-export const createBrand = async (type: string): Promise<IBrand> => {
-  const { data } = await $authHost.post("api/brand", {
-    type,
-  })
+export const createBrand = async (type: IBrand): Promise<IBrand> => {
+  const { data } = await $authHost.post("api/brand", type)
 
   return data
 }

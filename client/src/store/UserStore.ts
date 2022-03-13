@@ -1,17 +1,21 @@
 import { makeAutoObservable } from "mobx"
+import { IUser } from "../types/user"
 
 export interface IUserStore {
   _isAuth: boolean
-  _userData: any
+  _userData: IUser
 }
 export default class UserStore implements IUserStore {
   _isAuth = false
-  _userData = {}
+  _userData = {} as IUserStore["_userData"]
   constructor() {
     makeAutoObservable(this)
   }
 
   setIsAuth(bool: IUserStore["_isAuth"]) {
+    if (!bool) {
+      localStorage.removeItem("token")
+    }
     this._isAuth = bool
   }
   setUser(user: IUserStore["_userData"]) {

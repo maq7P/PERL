@@ -11,14 +11,12 @@ import { registration, login } from "../api/userApi"
 import AppContext from "../context/AppContext"
 import { LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE } from "../utils/constants"
 import { observer } from "mobx-react-lite"
+import { IUser } from "../types/user"
 
 const Auth = observer(() => {
   const { user } = useContext(AppContext)
   const location = useLocation()
   const navigate = useNavigate()
-  // const signIn = async () => {
-  //   const response = await registration()
-  // }
 
   const [password, setPassword] = useState<string>("")
   const [email, setEmail] = useState<string>("")
@@ -26,7 +24,7 @@ const Auth = observer(() => {
   const isLogin = location.pathname === LOGIN_ROUTE
 
   const handleClick = async () => {
-    let userData
+    let userData: IUser
 
     if (isLogin) {
       userData = await login(email, password)
