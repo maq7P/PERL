@@ -16,10 +16,7 @@ export interface IUserStore {
 export default class DeviceStore implements IUserStore {
   _types = [] as IUserStore["_types"]
   _brands = [] as IUserStore["_brands"]
-  _devices = [
-    { id: 1, name: "Iphone 12 pro", price: 120000, rating: 5, img: "" },
-    { id: 2, name: "Iphone 10", price: 70000, rating: 4, img: "" },
-  ]
+  _devices = [] as IUserStore["_devices"]
   _selectedType = {} as ISelectedType
   _selectedBrand = {} as ISelectedType
 
@@ -33,7 +30,7 @@ export default class DeviceStore implements IUserStore {
   setTypes(types: IUserStore["_types"]) {
     this._types = types
   }
-  setUser(devices: IUserStore["_devices"]) {
+  setDevices(devices: IUserStore["_devices"]) {
     this._devices = devices
   }
   setSelectedType(type: IUserStore["_selectedType"]) {

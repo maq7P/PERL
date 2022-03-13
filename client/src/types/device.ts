@@ -9,4 +9,7 @@ export interface IDevice extends IIdWithName {
   rating: number
   name: string
   img: string
+  typeId?: string
+  brandId?: string
+  info?: any[]
 }

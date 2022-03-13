@@ -2,16 +2,27 @@ import React, { useEffect, useState } from "react"
 import { Button, Card, Col, Container, Image, Row } from "react-bootstrap"
 // @ts-ignore
 import bigStar from "../assets/bigStar.png"
-import { useParams } from "react-router-dom"
+import { fetchOneDevice } from "../api/deviceApi"
+import { useParams } from "react-router"
+import { IDevice } from "../types/device"
 
 const DevicePage = () => {
-  const device = {
-    id: 1,
-    name: "Iphone 12 pro",
-    price: 120000,
-    rating: 5,
-    img: "",
-  }
+  const { id } = useParams()
+
+  const [device, setDevice] = useState({} as IDevice)
+
+  useEffect(() => {
+    console.log(id)
+    fetchOneDevice(id || "").then(data => setDevice(data))
+  }, [])
+
+  // const device = {
+  //   id: 1,
+  //   name: "Iphone 12 pro",
+  //   price: 120000,
+  //   rating: 5,
+  //   img: "",
+  // }
   const description = [
     { id: 1, title: "Оперативная память", description: "5gb" },
     { id: 2, title: "Камера", description: "12mp" },
@@ -27,6 +38,7 @@ const DevicePage = () => {
             width={300}
             height={300}
             src={process.env.REACT_APP_API_URL + device.img}
+            style={{ objectFit: "contain" }}
           />
         </Col>
         <Col md={4}>
@@ -63,7 +75,7 @@ const DevicePage = () => {
       </Row>
       <Row className="d-flex flex-column m-3">
         <h1>Характеристики</h1>
-        {description.map((info, index) => (
+        {(device?.info ?? []).map((info, index) => (
           <Row
             key={info.id}
             style={{

@@ -23,10 +23,11 @@ const DeviceItem: FC<IDeviceItem> = ({ device }) => {
     >
       <Card style={{ width: 150, cursor: "pointer" }} border={"light"}>
         <Image
-          width={150}
-          height={150}
+          width={200}
+          height={200}
           src={process.env.REACT_APP_API_URL + device.img}
           alt="картинка"
+          style={{ objectFit: "contain" }}
         />
         <div className="text-black-50 mt-1 d-flex justify-content-between align-items-center">
           <div>Samsung...</div>
