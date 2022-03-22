@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { Button, Card, Col, Container, Image, Row } from "react-bootstrap"
 // @ts-ignore
 import bigStar from "../assets/bigStar.png"
-import { fetchOneDevice } from "../api/deviceApi"
+import {fetchOneDevice} from "../api/deviceApi"
 import { useParams } from "react-router"
 import { IDevice } from "../types/device"
 
@@ -12,24 +12,10 @@ const DevicePage = () => {
   const [device, setDevice] = useState({} as IDevice)
 
   useEffect(() => {
-    console.log(id)
-    fetchOneDevice(id || "").then(data => setDevice(data))
+    fetchOneDevice(id || "")
+      .then(data => setDevice(data))
   }, [])
 
-  // const device = {
-  //   id: 1,
-  //   name: "Iphone 12 pro",
-  //   price: 120000,
-  //   rating: 5,
-  //   img: "",
-  // }
-  const description = [
-    { id: 1, title: "Оперативная память", description: "5gb" },
-    { id: 2, title: "Камера", description: "12mp" },
-    { id: 3, title: "Процессор", description: "Pentium 3" },
-    { id: 4, title: "Кол-во ядер", description: "2" },
-    { id: 5, title: "Аккумулятор", description: "4000" },
-  ]
   return (
     <Container className="mt-3">
       <Row>

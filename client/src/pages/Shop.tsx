@@ -9,7 +9,7 @@ import TypeBar from "../components/TypeBar"
 import AppContext from "../context/AppContext"
 import BrandBar from "../components/BrandsBar"
 import DeviceList from "../components/DeviceList"
-import { fetchBrands, fetchDevices, fetchTypes } from "../api/deviceApi"
+import {fetchBrands, fetchDevices, fetchOneRating, fetchTypes} from "../api/deviceApi"
 import Pages from "../components/Pages"
 
 const Shop = observer(() => {
@@ -22,6 +22,7 @@ const Shop = observer(() => {
       device.setDevices(data.rows)
       device.setTotalCount(data.count)
     })
+    fetchOneRating(1).then(data => console.log(data))
   }, [])
 
   useEffect(() => {

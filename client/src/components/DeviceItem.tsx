@@ -15,6 +15,7 @@ interface IDeviceItem {
 
 const DeviceItem: FC<IDeviceItem> = ({ device }) => {
   const navigate = useNavigate()
+
   return (
     <Col
       md={3}

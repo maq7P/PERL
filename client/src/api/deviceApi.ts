@@ -57,3 +57,9 @@ export const fetchOneDevice = async (id: string): Promise<IDevice> => {
 
   return data
 }
+
+export const fetchOneRating = async (deviceId: number): Promise<any> => {
+  const { data } = await $host.get(`api/rating/${deviceId}`)
+
+  return data
+}
